@@ -13,8 +13,9 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
 add_library(trinamic_control
-  src/${PROJECT_NAME}/trinamic_message/trinamic_command.cpp
-  src/${PROJECT_NAME}/trinamic_message/trinamic_response.cpp
+  src/${PROJECT_NAME}/trinamic_message/trinamic_message.cpp
+  src/${PROJECT_NAME}/trinamic_message/implementation/trinamic_command.cpp
+  src/${PROJECT_NAME}/trinamic_message/implementation/trinamic_response.cpp
   src/${PROJECT_NAME}/trinamic_connection.cpp
 )
 ament_target_dependencies(trinamic_control
