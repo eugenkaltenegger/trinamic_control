@@ -10,6 +10,27 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+
+add_library(trinamic_control
+  src/${PROJECT_NAME}/trinamic_message/trinamic_command.cpp
+  src/${PROJECT_NAME}/trinamic_message/trinamic_response.cpp
+  src/${PROJECT_NAME}/trinamic_connection.cpp
+)
+ament_target_dependencies(trinamic_control
+  rclcpp
+)
+
+add_executable(trinamic_control_node src/trinamic_control_node.cpp)
+target_link_libraries(trinamic_control_node trinamic_control)
+ament_target_dependencies(trinamic_control_node
+  rclcpp
+)
+
+install(TARGETS
+  trinamic_control_node
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -22,5 +43,7 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+include_directories(include)
 
 ament_package()
