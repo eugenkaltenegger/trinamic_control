@@ -4,8 +4,7 @@ using trinamic_control::TrinamicControlNode;
 
 TrinamicControlNode::TrinamicControlNode() : Node("trinamic_control_node")
 {
-  RCLCPP_INFO("hello world!");
-  return;
+  RCLCPP_INFO(this->get_logger(), "hello world!");
 }
 
 int main(int argc, char * argv[])
