@@ -7,9 +7,9 @@
   
   <description>Package to operate Trinamic TMCM-1640</description>
   
-  <author email="eugen.kaltenegger@gmail.com">Eugen Kaltenegger</author>
   <maintainer email="eugen.kaltenegger@gmail.com">Eugen Kaltenegger</maintainer>
-  
+  <author email="eugen.kaltenegger@gmail.com">Eugen Kaltenegger</author>
+
   <license>BSD</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

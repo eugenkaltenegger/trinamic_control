@@ -8,7 +8,7 @@
 
 using trinamic_control::TrinamicCommand;
 
-TEST(TrinamicCommandTest, setVelocity0)
+TEST(trinamic_control, setVelocity0)
 {
   TrinamicCommand command(1, 5, 2, 0, 0);
   ASSERT_EQ(command.toString(), "01 05 02 00 00 00 00 00 08");
