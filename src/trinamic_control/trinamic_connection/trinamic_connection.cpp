@@ -12,7 +12,7 @@
 #include <ros/ros.h>
 
 using tuw_hardware_interface::TMCM1640Connection;
-using tuw_hardware_interface::TrinamicCommand;
+using tuw_hardware_interface::TrinamicMessageCommand;
 using tuw_hardware_interface::TrinamicReply;
 using tuw_hardware_interface::GenericHardwareParameter;
 using tuw_hardware_interface::GenericSetupPrefix;
@@ -147,7 +147,7 @@ void TMCM1640Connection::writeTrinamic(int id, TrinamicHardwareParameter hardwar
   auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
   auto id_number = static_cast<unsigned char>(id);
 
-  TrinamicCommand command(module_address, command_number, type_number, id_number, data);
+  TrinamicMessageCommand command(module_address, command_number, type_number, id_number, data);
   TrinamicReply reply = this->communicate(command);
 
   ros::Time end = ros::Time::now();
@@ -163,7 +163,7 @@ int TMCM1640Connection::readTrinamic(int id, TrinamicHardwareParameter hardware_
   auto type_number = static_cast<unsigned char>(*hardware_parameter.getParameter());
   auto id_number = static_cast<unsigned char>(id);
 
-  TrinamicCommand command(module_address, command_number, type_number, id_number, 0);
+  TrinamicMessageCommand command(module_address, command_number, type_number, id_number, 0);
   TrinamicReply reply = this->communicate(command);
   return reply.getValue();
 
@@ -172,7 +172,7 @@ int TMCM1640Connection::readTrinamic(int id, TrinamicHardwareParameter hardware_
   ROS_DEBUG("trinamic read was: %ld", duration.toNSec());
 }
 
-TrinamicReply TMCM1640Connection::communicate(TrinamicCommand command)
+TrinamicReply TMCM1640Connection::communicate(TrinamicMessageCommand command)
 {
   TrinamicReply reply;
 

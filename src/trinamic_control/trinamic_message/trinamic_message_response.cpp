@@ -2,9 +2,9 @@
 
 #include <trinamic_control/trinamic_message/implementation/trinamic_response.hpp>
 
-using trinamic_control::TrinamicResponse;
+using trinamic_control::TrinamicMessageResponse;
 
-TrinamicResponse::TrinamicResponse(unsigned char response_address,
+TrinamicMessageResponse::TrinamicMessageResponse(unsigned char response_address,
                              unsigned char module_address,
                              unsigned char status,
                              unsigned char command,
@@ -18,32 +18,32 @@ TrinamicResponse::TrinamicResponse(unsigned char response_address,
   this->setChecksum(this->calculateChecksum());
 }
 
-unsigned char TrinamicResponse::getResponseAddress()
+unsigned char TrinamicMessageResponse::getResponseAddress()
 {
   return this->getByte1();
 }
 
-unsigned char TrinamicResponse::getModuleAddress()
+unsigned char TrinamicMessageResponse::getModuleAddress()
 {
   return this->getByte2();
 }
 
-unsigned char TrinamicResponse::getStatus()
+unsigned char TrinamicMessageResponse::getStatus()
 {
   return this->getByte3();
 }
 
-unsigned char TrinamicResponse::getCommand()
+unsigned char TrinamicMessageResponse::getCommand()
 {
   return this->getByte4();
 }
 
-int TrinamicResponse::getValue()
+int TrinamicMessageResponse::getValue()
 {
   return TrinamicMessage::getValue();
 }
 
-unsigned char TrinamicResponse::getChecksum()
+unsigned char TrinamicMessageResponse::getChecksum()
 {
   return TrinamicMessage::getChecksum();
 }

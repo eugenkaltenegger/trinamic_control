@@ -6,34 +6,34 @@
 
 #include <trinamic_control/trinamic_message/implementation/trinamic_command.hpp>
 
-using trinamic_control::TrinamicCommand;
+using trinamic_control::TrinamicMessageCommand;
 
 TEST(trinamic_control, setVelocity0)
 {
-  TrinamicCommand command(1, 5, 2, 0, 0);
+  TrinamicMessageCommand command(1, 5, 2, 0, 0);
   ASSERT_EQ(command.toString(), "01 05 02 00 00 00 00 00 08");
 }
 
-TEST(TrinamicCommandTest, setVelocity10)
+TEST(TrinamicMessageCommandTest, setVelocity10)
 {
-  TrinamicCommand command(1, 5, 2, 0, 10);
+  TrinamicMessageCommand command(1, 5, 2, 0, 10);
   ASSERT_EQ(command.toString(), "01 05 02 00 00 00 00 0A 12");
 }
 
-TEST(TrinamicCommandTest, setVelocity100)
+TEST(TrinamicMessageCommandTest, setVelocity100)
 {
-  TrinamicCommand command(1, 5, 2, 0, 100);
+  TrinamicMessageCommand command(1, 5, 2, 0, 100);
   ASSERT_EQ(command.toString(), "01 05 02 00 00 00 00 64 6C");
 }
 
-TEST(TrinamicCommandTest, setVelocity1000)
+TEST(TrinamicMessageCommandTest, setVelocity1000)
 {
-  TrinamicCommand command(1, 5, 2, 0, 1000);
+  TrinamicMessageCommand command(1, 5, 2, 0, 1000);
   ASSERT_EQ(command.toString(), "01 05 02 00 00 00 03 E8 F3");
 }
 
-TEST(TrinamicCommandTest, getVelocity)
+TEST(TrinamicMessageCommandTest, getVelocity)
 {
-  TrinamicCommand command(1, 6, 3, 0, 0);
+  TrinamicMessageCommand command(1, 6, 3, 0, 0);
   ASSERT_EQ(command.toString(), "01 06 03 00 00 00 00 00 0A");
 }

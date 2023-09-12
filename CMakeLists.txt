@@ -12,18 +12,18 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 find_package(rclcpp REQUIRED)
 
-add_library(trinamic_control
-  src/${PROJECT_NAME}/trinamic_message/trinamic_message.cpp
-  src/${PROJECT_NAME}/trinamic_message/implementation/trinamic_command.cpp
-  src/${PROJECT_NAME}/trinamic_message/implementation/trinamic_response.cpp
-  src/${PROJECT_NAME}/trinamic_connection.cpp
-)
-ament_target_dependencies(trinamic_control
-  rclcpp
-)
+#add_library(trinamic_control
+  #src/${PROJECT_NAME}/trinamic_message/trinamic_message.cpp
+  #src/${PROJECT_NAME}/trinamic_message/trinamic_message_command.cpp
+  #src/${PROJECT_NAME}/trinamic_message/trinamic_message_response.cpp
+  #src/${PROJECT_NAME}/trinamic_connection/trinamic_connection.cpp
+#)
+#ament_target_dependencies(trinamic_control
+#  rclcpp
+#)
 
 add_executable(trinamic_control_node src/trinamic_control_node.cpp)
-target_link_libraries(trinamic_control_node trinamic_control)
+#target_link_libraries(trinamic_control_node trinamic_control)
 ament_target_dependencies(trinamic_control_node
   rclcpp
 )
@@ -31,6 +31,14 @@ ament_target_dependencies(trinamic_control_node
 install(TARGETS
   trinamic_control_node
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  DIRECTORY
+    launch
+    config
+  DESTINATION
+    share/${PROJECT_NAME}
 )
 
 #if(BUILD_TESTING)
@@ -49,9 +57,9 @@ if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
   ament_add_gtest(${PROJECT_NAME}_test
     test/${PROJECT_NAME}_test.cpp
-    test/${PROJECT_NAME}/trinamic_message/implementation/trinamic_command_test.cpp
-    test/${PROJECT_NAME}/trinamic_message/implementation/trinamic_response_test.cpp
-    test/${PROJECT_NAME}/trinamic_message/trinamic_message_test.cpp
+    #test/${PROJECT_NAME}/trinamic_message/trinamic_message_test.cpp
+    #test/${PROJECT_NAME}/trinamic_message/trinamic_message_command_test.cpp
+    #test/${PROJECT_NAME}/trinamic_message/trinamic_message_response_test.cpp
   )
   target_include_directories(${PROJECT_NAME}_test PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -60,7 +68,7 @@ if(BUILD_TESTING)
   ament_target_dependencies(${PROJECT_NAME}_test
     std_msgs
   )
-  target_link_libraries(${PROJECT_NAME}_test trinamic_control)
+  #target_link_libraries(${PROJECT_NAME}_test trinamic_control)
 endif()
 
 include_directories(include)

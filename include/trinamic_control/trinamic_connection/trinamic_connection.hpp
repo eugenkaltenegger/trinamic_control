@@ -27,7 +27,7 @@
 
 namespace tuw_hardware_interface
 {
-class TrinamicCommand;
+class TrinamicMessageCommand;
 class TrinamicReply;
 class TMCM1640Connection : public GenericConnection
 {
@@ -48,7 +48,7 @@ public:
   int read(int id, GenericHardwareParameter hardware_parameter) override;
 
 private:
-  TrinamicReply communicate(TrinamicCommand command);
+  TrinamicReply communicate(TrinamicMessageCommand command);
   static std::unique_ptr<std::map<std::string, std::shared_ptr<TMCM1640Connection>>> connection_table_;
   std::shared_ptr<GenericConnectionDescription> connection_description_;
   int serial_port_{};

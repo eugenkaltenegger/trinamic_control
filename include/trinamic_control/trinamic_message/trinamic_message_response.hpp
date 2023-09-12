@@ -7,12 +7,12 @@
 
 namespace trinamic_control
 {
-class TrinamicResponse : public TrinamicMessage
+class TrinamicMessageResponse : public TrinamicMessage
 {
 public:
-  TrinamicResponse() = default;
-  ~TrinamicResponse() = default;
-  TrinamicResponse(unsigned char response_address,
+  TrinamicMessageResponse() = default;
+  ~TrinamicMessageResponse() = default;
+  TrinamicMessageResponse(unsigned char response_address,
                 unsigned char module_address,
                 unsigned char status,
                 unsigned char command,

@@ -7,16 +7,16 @@
 
 namespace trinamic_control
 {
-class TrinamicCommand : public TrinamicMessage
+class TrinamicMessageCommand : public TrinamicMessage
 {
 public:
-  TrinamicCommand(unsigned char module_address,
+  TrinamicMessageCommand(unsigned char module_address,
                   unsigned char command,
                   unsigned char type,
                   unsigned char id,
                   int value);
-  TrinamicCommand() = default;
-  ~TrinamicCommand() = default;
+  TrinamicMessageCommand() = default;
+  ~TrinamicMessageCommand() = default;
 protected:
   void setModuleAddress(unsigned char module_address);
   void setCommand(unsigned char command);

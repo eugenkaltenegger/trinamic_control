@@ -4,13 +4,15 @@ using trinamic_control::TrinamicControlNode;
 
 TrinamicControlNode::TrinamicControlNode() : Node("trinamic_control_node")
 {
-  RCLCPP_INFO(this->get_logger(), "hello world!");
+  this->declare_parameter("config_file_path", "noch_nicht_da");
+  RCLCPP_INFO(this->get_logger(), "hello trinamic control node!");
 }
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<TrinamicControlNode>());
+  auto node = std::make_shared<TrinamicControlNode>();
+  rclcpp::spin(node);
   rclcpp::shutdown();
   return 0;
 }

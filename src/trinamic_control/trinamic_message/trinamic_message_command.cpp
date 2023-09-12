@@ -2,9 +2,9 @@
 
 #include <trinamic_control/trinamic_message/implementation/trinamic_command.hpp>
 
-using trinamic_control::TrinamicCommand;
+using trinamic_control::TrinamicMessageCommand;
 
-TrinamicCommand::TrinamicCommand(unsigned char module_address,
+TrinamicMessageCommand::TrinamicMessageCommand(unsigned char module_address,
                                  unsigned char command,
                                  unsigned char type,
                                  unsigned char id,
@@ -19,22 +19,22 @@ TrinamicCommand::TrinamicCommand(unsigned char module_address,
 }
 
 
-void TrinamicCommand::setModuleAddress(unsigned char module_address)
+void TrinamicMessageCommand::setModuleAddress(unsigned char module_address)
 {
   this->setByte1(module_address);
 }
 
-void TrinamicCommand::setCommand(unsigned char command)
+void TrinamicMessageCommand::setCommand(unsigned char command)
 {
   this->setByte2(command);
 }
 
-void TrinamicCommand::setType(unsigned char type)
+void TrinamicMessageCommand::setType(unsigned char type)
 {
   this->setByte3(type);
 }
 
-void TrinamicCommand::setId(unsigned char id)
+void TrinamicMessageCommand::setId(unsigned char id)
 {
   this->setByte4(id);
 }
