@@ -1,31 +1,37 @@
 cmake_minimum_required(VERSION 3.8)
 project(trinamic_control)
 
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+endif()
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(yaml_cpp_vendor REQUIRED)
 
 #add_library(trinamic_control
-  #src/${PROJECT_NAME}/trinamic_message/trinamic_message.cpp
-  #src/${PROJECT_NAME}/trinamic_message/trinamic_message_command.cpp
-  #src/${PROJECT_NAME}/trinamic_message/trinamic_message_response.cpp
-  #src/${PROJECT_NAME}/trinamic_connection/trinamic_connection.cpp
+#  src/${PROJECT_NAME}/trinamic_joint/trinamic_joint.cpp
 #)
 #ament_target_dependencies(trinamic_control
 #  rclcpp
 #)
 
-add_executable(trinamic_control_node src/trinamic_control_node.cpp)
-#target_link_libraries(trinamic_control_node trinamic_control)
+add_executable(trinamic_control_node
+  src/trinamic_control_node.cpp
+)
+target_link_libraries(trinamic_control_node
+#  trinamic_control
+  yaml-cpp
+)
 ament_target_dependencies(trinamic_control_node
   rclcpp
+  yaml_cpp_vendor
 )
 
 install(TARGETS

@@ -10,9 +10,8 @@
 #include <cstring>
 #include <string>
 #include <unistd.h>
-
-#include "tuw_hardware_interface_template/generic_connection.h"
-#include "tuw_hardware_interface_trinamic/trinamic_hardware_parameter.h"
+#include <yaml-cpp/node/node.h>
+#include <yaml-cpp/node/parse.h>
 
 #define SET_AXIS_PARAMETER 5
 #define GET_AXIS_PARAMETER 6
@@ -25,34 +24,29 @@
 #define CONFIGURATION_LOCKED 5
 #define COMMAND_NOT_AVAILABLE 6
 
-namespace tuw_hardware_interface
+namespace trinamic_control
 {
 class TrinamicMessageCommand;
-class TrinamicReply;
-class TMCM1640Connection : public GenericConnection
+class TrinamicMessageResponse;
+class TrinamicConnection
 {
 public:
-  static std::shared_ptr<TMCM1640Connection> getConnection
-          (const std::shared_ptr<GenericConnectionDescription>& connection_description);
+  static std::shared_ptr<TrinamicConnection> getConnection(YAML::Node node);
 
-  explicit TMCM1640Connection(std::shared_ptr<GenericConnectionDescription> connection_description);
-  ~TMCM1640Connection();
+  explicit TrinamicConnection(YAML::Node node);
 
-  bool connect() override;
-  bool disconnect() override;
+  bool connect();
+  bool disconnect();
 
-  void writeTrinamic(int id, TrinamicHardwareParameter hardware_parameter, int data);
-  int readTrinamic(int id, TrinamicHardwareParameter hardware_parameter);
-  void readTrinamic(int id, std::vector<std::pair<TrinamicHardwareParameter, int*>> parameter_data_pairs);
-  void write(int id, GenericHardwareParameter hardware_parameter, int data) override;
-  int read(int id, GenericHardwareParameter hardware_parameter) override;
+  void write(TrinamicParameter trinamic_parmeter, int data);
+  int read(TrinamicParameter trinamic_parameter);
 
 private:
-  TrinamicReply communicate(TrinamicMessageCommand command);
-  static std::unique_ptr<std::map<std::string, std::shared_ptr<TMCM1640Connection>>> connection_table_;
-  std::shared_ptr<GenericConnectionDescription> connection_description_;
-  int serial_port_{};
-  struct termios tty_{};
+  TrinamicMessageResponse communicate(TrinamicMessageCommand command);
+  //static std::unique_ptr<std::map<std::string, std::shared_ptr<TMCM1640Connection>>> connection_table_;
+  //std::shared_ptr<GenericConnectionDescription> connection_description_;
+  //int serial_port_{};
+  //struct termios tty_{};
 };
 }  // namespace tuw_trinamic_ros_control
 
