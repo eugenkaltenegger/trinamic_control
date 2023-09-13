@@ -24,8 +24,12 @@ add_library(trinamic_control
   src/${PROJECT_NAME}/trinamic_message/trinamic_message_response.cpp
   src/${PROJECT_NAME}/trinamic_parameter/trinamic_parameter.cpp
 )
+target_link_libraries(trinamic_control
+  yaml-cpp
+)
 ament_target_dependencies(trinamic_control
   rclcpp
+  yaml_cpp_vendor
 )
 
 add_executable(trinamic_control_node
@@ -69,6 +73,7 @@ if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
   ament_add_gtest(${PROJECT_NAME}_test
     test/${PROJECT_NAME}_test.cpp
+    test/${PROJECT_NAME}/trinamic_parameter/trinamic_parameter_test.cpp
     #test/${PROJECT_NAME}/trinamic_message/trinamic_message_test.cpp
     #test/${PROJECT_NAME}/trinamic_message/trinamic_message_command_test.cpp
     #test/${PROJECT_NAME}/trinamic_message/trinamic_message_response_test.cpp
@@ -77,10 +82,13 @@ if(BUILD_TESTING)
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
   )
-  ament_target_dependencies(${PROJECT_NAME}_test
-    std_msgs
+  target_link_libraries(${PROJECT_NAME}_test
+    trinamic_control
+    yaml-cpp
   )
-  #target_link_libraries(${PROJECT_NAME}_test trinamic_control)
+  ament_target_dependencies(${PROJECT_NAME}_test
+    yaml_cpp_vendor
+  )
 endif()
 
 include_directories(include)
