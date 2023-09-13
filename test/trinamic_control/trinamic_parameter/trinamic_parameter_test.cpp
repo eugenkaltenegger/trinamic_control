@@ -12,10 +12,10 @@ using trinamic_control::TrinamicParameter;
 
 TEST(TrinamicParameterTest, target_state_parameter_test)
 {
-  YAML::Node yaml = YAML::Load("{address: 0, identifier: tsp_i, description: tsp_d}");
+  YAML::Node yaml = YAML::Load("{address: 0, identifier: fizz, description: buzz}");
   TrinamicParameter tp(yaml);
 
   ASSERT_EQ(tp.getAddress(), 0);
-  ASSERT_EQ(tp.getIdentifier(), "tsp_i");
-  ASSERT_EQ(tp.getDescription(), "tsp_d");
+  ASSERT_EQ(tp.getIdentifier(), "fizz");
+  ASSERT_EQ(tp.getDescription(), "buzz");
 }
