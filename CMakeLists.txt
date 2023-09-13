@@ -15,18 +15,24 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(yaml_cpp_vendor REQUIRED)
 
-#add_library(trinamic_control
-#  src/${PROJECT_NAME}/trinamic_joint/trinamic_joint.cpp
-#)
-#ament_target_dependencies(trinamic_control
-#  rclcpp
-#)
+add_library(trinamic_control
+  src/${PROJECT_NAME}/trinamic_config/trinamic_config.cpp
+  src/${PROJECT_NAME}/trinamic_connection/trinamic_connection.cpp
+  src/${PROJECT_NAME}/trinamic_joint/trinamic_joint.cpp
+  src/${PROJECT_NAME}/trinamic_message/trinamic_message.cpp
+  src/${PROJECT_NAME}/trinamic_message/trinamic_message_command.cpp
+  src/${PROJECT_NAME}/trinamic_message/trinamic_message_response.cpp
+  src/${PROJECT_NAME}/trinamic_parameter/trinamic_parameter.cpp
+)
+ament_target_dependencies(trinamic_control
+  rclcpp
+)
 
 add_executable(trinamic_control_node
   src/trinamic_control_node.cpp
 )
 target_link_libraries(trinamic_control_node
-#  trinamic_control
+  trinamic_control
   yaml-cpp
 )
 ament_target_dependencies(trinamic_control_node

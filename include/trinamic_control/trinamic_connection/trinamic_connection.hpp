@@ -13,6 +13,10 @@
 #include <yaml-cpp/node/node.h>
 #include <yaml-cpp/node/parse.h>
 
+#include <trinamic_control/trinamic_message/trinamic_message_command.hpp>
+#include <trinamic_control/trinamic_message/trinamic_message_response.hpp>
+#include <trinamic_control/trinamic_parameter/trinamic_parameter.hpp>
+
 #define SET_AXIS_PARAMETER 5
 #define GET_AXIS_PARAMETER 6
 
@@ -26,8 +30,6 @@
 
 namespace trinamic_control
 {
-class TrinamicMessageCommand;
-class TrinamicMessageResponse;
 class TrinamicConnection
 {
 public:

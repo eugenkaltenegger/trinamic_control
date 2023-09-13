@@ -1,22 +1,13 @@
-// Copyright 2022 Eugen Kaltenegger
+// Copyright 2023 Eugen Kaltenegger
 
-#include "tuw_hardware_interface_trinamic/trinamic_connection/tmcm1640_connection.h"
+#include <trinamic_control/trinamic_connection/trinamic_connection.hpp>
 
-#include "tuw_hardware_interface_template/description/generic_connection_description.h"
-#include "tuw_hardware_interface_template/generic_hardware_parameter.h"
-#include "tuw_hardware_interface_template/generic_setup_prefix.h"
+using trinamic_control::TrinamicConnection;
+using trinamic_control::TrinamicMessageCommand;
+using trinamic_control::TrinamicMessageResponse;
+using trinamic_control::TrinamicParameter;
 
-#include <tuw_hardware_interface_trinamic/trinamic_connection/trinamic_message/trinamic_command.h>
-#include <tuw_hardware_interface_trinamic/trinamic_connection/trinamic_message/trinamic_reply.h>
-#include <boost/format.hpp>
-#include <ros/ros.h>
-
-using tuw_hardware_interface::TMCM1640Connection;
-using tuw_hardware_interface::TrinamicMessageCommand;
-using tuw_hardware_interface::TrinamicReply;
-using tuw_hardware_interface::GenericHardwareParameter;
-using tuw_hardware_interface::GenericSetupPrefix;
-
+/*
 std::unique_ptr<std::map<std::string, std::shared_ptr<TMCM1640Connection>>> TMCM1640Connection::connection_table_;
 
 std::shared_ptr<TMCM1640Connection> TMCM1640Connection::getConnection(const std::shared_ptr<GenericConnectionDescription>& connection_description)
@@ -237,3 +228,4 @@ void TMCM1640Connection::readTrinamic(int id, std::vector<std::pair<TrinamicHard
     *data_pointer = this->readTrinamic(id, hardware_parameter);
   }
 }
+*/

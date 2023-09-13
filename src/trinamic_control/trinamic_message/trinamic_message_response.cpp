@@ -1,6 +1,6 @@
 // Copyright 2022 Eugen Kaltenegger
 
-#include <trinamic_control/trinamic_message/implementation/trinamic_response.hpp>
+#include <trinamic_control/trinamic_message/trinamic_message_response.hpp>
 
 using trinamic_control::TrinamicMessageResponse;
 

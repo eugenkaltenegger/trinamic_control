@@ -1,6 +1,6 @@
 // Copyright 2023 Eugen Kaltenegger
 
-#include <trinamic_control/trinamic_message/implementation/trinamic_command.hpp>
+#include <trinamic_control/trinamic_message/trinamic_message_command.hpp>
 
 using trinamic_control::TrinamicMessageCommand;
 
